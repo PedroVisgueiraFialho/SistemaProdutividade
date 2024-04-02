@@ -11,7 +11,6 @@ public class JavaSistema {
      miLogin.setDados(msDados);
      miLogin.setLocationRelativeTo(null);
      miLogin.setVisible(true);
-    //teste
     
     }
     
