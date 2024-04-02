@@ -4,6 +4,8 @@
  */
 package formularios;
 
+
+
 /**
  *
  * @author rafae
@@ -26,16 +28,79 @@ public class frmPrincipalAdm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dpnDesk = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnuPessoal = new javax.swing.JMenu();
+        mnuPessoalUsuarios = new javax.swing.JMenuItem();
+        mnuPessoalNovoUsuario = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mnuPessoalSair = new javax.swing.JMenuItem();
+        mnuArquivos = new javax.swing.JMenu();
+        mnuArquivosRelatorios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de produtividade");
+
+        javax.swing.GroupLayout dpnDeskLayout = new javax.swing.GroupLayout(dpnDesk);
+        dpnDesk.setLayout(dpnDeskLayout);
+        dpnDeskLayout.setHorizontalGroup(
+            dpnDeskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 551, Short.MAX_VALUE)
+        );
+        dpnDeskLayout.setVerticalGroup(
+            dpnDeskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+        );
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        mnuPessoal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Pessoal.png"))); // NOI18N
+        mnuPessoal.setText("Pessoal");
+
+        mnuPessoalUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        mnuPessoalUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Usuarios.png"))); // NOI18N
+        mnuPessoalUsuarios.setText("Usuarios");
+        mnuPessoalUsuarios.setToolTipText("");
+        mnuPessoalUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPessoalUsuariosActionPerformed(evt);
+            }
+        });
+        mnuPessoal.add(mnuPessoalUsuarios);
+
+        mnuPessoalNovoUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        mnuPessoalNovoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Novo usuario.png"))); // NOI18N
+        mnuPessoalNovoUsuario.setText("Novo Usuario");
+        mnuPessoalNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPessoalNovoUsuarioActionPerformed(evt);
+            }
+        });
+        mnuPessoal.add(mnuPessoalNovoUsuario);
+        mnuPessoal.add(jSeparator1);
+
+        mnuPessoalSair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        mnuPessoalSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sair.png"))); // NOI18N
+        mnuPessoalSair.setText("Sair");
+        mnuPessoalSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPessoalSairActionPerformed(evt);
+            }
+        });
+        mnuPessoal.add(mnuPessoalSair);
+
+        jMenuBar1.add(mnuPessoal);
+
+        mnuArquivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Arquivo.png"))); // NOI18N
+        mnuArquivos.setText("Arquivos");
+
+        mnuArquivosRelatorios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        mnuArquivosRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Relatorio.png"))); // NOI18N
+        mnuArquivosRelatorios.setText("Relatórios");
+        mnuArquivos.add(mnuArquivosRelatorios);
+
+        jMenuBar1.add(mnuArquivos);
 
         setJMenuBar(jMenuBar1);
 
@@ -43,15 +108,34 @@ public class frmPrincipalAdm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
+            .addComponent(dpnDesk)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 418, Short.MAX_VALUE)
+            .addComponent(dpnDesk)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnuPessoalUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPessoalUsuariosActionPerformed
+frmUsuarios mUsuarios = new frmUsuarios();
+dpnDesk.add(mUsuarios);
+mUsuarios.show();
+    }//GEN-LAST:event_mnuPessoalUsuariosActionPerformed
+
+    private void mnuPessoalSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPessoalSairActionPerformed
+        frmLogin mLogin = new frmLogin();
+        this.setVisible(false);
+        mLogin.setLocationRelativeTo(null);
+        mLogin.setVisible(true);
+    }//GEN-LAST:event_mnuPessoalSairActionPerformed
+
+    private void mnuPessoalNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPessoalNovoUsuarioActionPerformed
+frmNovoUsuario mNovoUsuario = new frmNovoUsuario();
+dpnDesk.add(mNovoUsuario);
+mNovoUsuario.show();        
+    }//GEN-LAST:event_mnuPessoalNovoUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,8 +174,15 @@ public class frmPrincipalAdm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane dpnDesk;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu mnuArquivos;
+    private javax.swing.JMenuItem mnuArquivosRelatorios;
+    private javax.swing.JMenu mnuPessoal;
+    private javax.swing.JMenuItem mnuPessoalNovoUsuario;
+    private javax.swing.JMenuItem mnuPessoalSair;
+    private javax.swing.JMenuItem mnuPessoalUsuarios;
     // End of variables declaration//GEN-END:variables
 }

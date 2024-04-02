@@ -8,12 +8,12 @@ package formularios;
  *
  * @author rafae
  */
-public class frmUsuario extends javax.swing.JInternalFrame {
+public class frmUsuarios extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form frmUsuario
      */
-    public frmUsuario() {
+    public frmUsuarios() {
         initComponents();
     }
 

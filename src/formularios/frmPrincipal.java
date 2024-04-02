@@ -4,6 +4,10 @@
  */
 package formularios;
 
+import classes.LimitaCaracteres;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rafae
@@ -15,6 +19,7 @@ public class frmPrincipal extends javax.swing.JFrame {
      */
     public frmPrincipal() {
         initComponents();
+        txtOs.setDocument(new LimitaCaracteres(6, LimitaCaracteres.tipoEntrada.ORDEMSERVICO));
     }
 
     /**
@@ -37,7 +42,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnPausar = new javax.swing.JButton();
         txtDn = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbSetor = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -56,17 +61,34 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         txtNomeCompleto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtNomeCompleto.setEnabled(false);
+        txtNomeCompleto.setFocusable(false);
+        txtNomeCompleto.setRequestFocusEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Ordem de serviço:");
 
         txtOs.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtOs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOsActionPerformed(evt);
+            }
+        });
+        txtOs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtOsKeyPressed(evt);
+            }
+        });
 
         btnComecar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnComecar.setText("Começar");
         btnComecar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComecarActionPerformed(evt);
+            }
+        });
+        btnComecar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnComecarKeyPressed(evt);
             }
         });
 
@@ -77,20 +99,37 @@ public class frmPrincipal extends javax.swing.JFrame {
                 btnTerminarActionPerformed(evt);
             }
         });
+        btnTerminar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnTerminarKeyPressed(evt);
+            }
+        });
 
         btnPausar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPausar.setText("Pausar");
 
         txtDn.setEnabled(false);
+        txtDn.setFocusable(false);
+        txtDn.setRequestFocusEnabled(false);
+        txtDn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDnActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Setor:");
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Projeto", "Corte", "Dobra", "Fabricação", "Acabamento", "Expedição" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cmbSetor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cmbSetor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Projeto", "Corte", "Dobra", "Fabricação", "Acabamento", "Expedição" }));
+        cmbSetor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cmbSetorActionPerformed(evt);
+            }
+        });
+        cmbSetor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbSetorKeyPressed(evt);
             }
         });
 
@@ -105,31 +144,37 @@ public class frmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtDn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(247, 247, 247))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnComecar)
-                            .addComponent(btnTerminar)
-                            .addComponent(btnPausar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOs, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtOs, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnTerminar)
+                            .addComponent(btnComecar))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPausar)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,26 +187,42 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                    .addComponent(cmbSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtOs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(btnComecar)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnComecar)
+                    .addComponent(btnPausar))
+                .addGap(18, 18, 18)
                 .addComponent(btnTerminar)
-                .addGap(29, 29, 29)
-                .addComponent(btnPausar)
-                .addGap(38, 38, 38))
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void dados(){
+        Object selectedItem = cmbSetor.getSelectedItem();
+        String setor = (selectedItem != null) ? selectedItem.toString() : null;
+        String os = txtOs.getText();
+        int option = JOptionPane.showConfirmDialog
+        (null, "Confira seus dados\n Setor: "+setor+"\nOrdem de serviço: "+os,"Atenção"
+                ,JOptionPane.WARNING_MESSAGE);
+        if (option == JOptionPane.YES_OPTION) {
+        frmLogin mLogin = new frmLogin();
+        this.setVisible(false);
+        mLogin.setLocationRelativeTo(null);
+        mLogin.setVisible(true);
+       }else{
+         return;
+       }
+    }
+    
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
         frmLogin mLogin = new frmLogin();
         this.setVisible(false);
@@ -170,15 +231,44 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTerminarActionPerformed
 
     private void btnComecarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComecarActionPerformed
-     frmLogin mLogin = new frmLogin();
-        this.setVisible(false);
-        mLogin.setLocationRelativeTo(null);
-        mLogin.setVisible(true);
+        dados();
     }//GEN-LAST:event_btnComecarActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cmbSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSetorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cmbSetorActionPerformed
+
+    private void txtDnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDnActionPerformed
+
+    private void txtOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOsActionPerformed
+
+    private void cmbSetorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbSetorKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            txtOs.requestFocus();
+        }
+    }//GEN-LAST:event_cmbSetorKeyPressed
+
+    private void txtOsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOsKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             btnComecarActionPerformed(null);
+        }else if(evt.getKeyCode()== KeyEvent.VK_UP){
+           cmbSetor.requestFocus();
+        }
+    }//GEN-LAST:event_txtOsKeyPressed
+
+    private void btnComecarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnComecarKeyPressed
+       
+    }//GEN-LAST:event_btnComecarKeyPressed
+
+    private void btnTerminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTerminarKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            btnTerminarActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnTerminarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -219,8 +309,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnComecar;
     private javax.swing.JButton btnPausar;
     private javax.swing.JButton btnTerminar;
+    private javax.swing.JComboBox<String> cmbSetor;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -5,20 +5,30 @@
 package formularios;
 
 import classes.Dados;
+import classes.LimitaCaracteres;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import java.awt.event.KeyEvent;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 /**
  *
  * @author rafae
  */
 public class frmLogin extends javax.swing.JFrame {
-
-    /**
-     * Creates new form frmLogin
-     */
+private Dados msDados;
+public void setDados(Dados msDados){
+    this.msDados = msDados;
+}
+    
     public frmLogin() {
         initComponents();
+        txtCpf.setDocument(new LimitaCaracteres(11, LimitaCaracteres.tipoEntrada.CPF));
+        txtDn.setDocument(new LimitaCaracteres(6, LimitaCaracteres.tipoEntrada.DATA));
     }
 
     /**
@@ -63,33 +73,56 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel1.setText("CPF:");
 
         txtCpf.setToolTipText("");
+        txtCpf.setActionCommand(txtDn.getText());
         txtCpf.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtCpf.setName(""); // NOI18N
-        txtCpf.setNextFocusableComponent(txtDn);
+        txtCpf.setNextFocusableComponent(txtDn.getNextFocusableComponent());
         txtCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCpfActionPerformed(evt);
+            }
+        });
+        txtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCpfKeyPressed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Data de nascimento:");
 
+        txtDn.setNextFocusableComponent(btnEntrar);
+        txtDn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDnActionPerformed(evt);
+            }
+        });
+        txtDn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDnKeyPressed(evt);
+            }
+        });
+
         jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(204, 204, 255));
         jTextField3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jTextField3.setText("Sistema Java");
+        jTextField3.setText("Sistema Produtividade");
         jTextField3.setToolTipText("Sistema criado pelos alunos Estácio");
         jTextField3.setFocusable(false);
 
         btnEntrar.setBackground(new java.awt.Color(204, 204, 204));
         btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Entrar.png"))); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEntrar.setFocusable(false);
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
+            }
+        });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
             }
         });
 
@@ -98,42 +131,42 @@ public class frmLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(btnEntrar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDn, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEntrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(33, 33, 33)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtDn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         txtCpf.getAccessibleContext().setAccessibleName("");
@@ -142,25 +175,54 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        Dados msDados = new Dados();
-        if(!msDados.validarUsuario(txtCpf.getText(),
+        
+        if(msDados.validarUsuario(txtCpf.getText(),
                 new String(txtDn.getText()))){
-            JOptionPane.showMessageDialog(rootPane, "Cpf e/ou Data de nascimento incorreto");
+        frmPrincipal mPrincipal = new frmPrincipal();
+        this.setVisible(false);
+        mPrincipal.setLocationRelativeTo(null);
+        mPrincipal.setVisible(true);
+        }else if(msDados.validarUsuario1(txtCpf.getText(),
+                new String(txtDn.getText()))){
+            frmPrincipalAdm mPrincipalAdm = new frmPrincipalAdm();
+        this.setVisible(false);
+        mPrincipalAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mPrincipalAdm.setLocationRelativeTo(null);
+        mPrincipalAdm.setVisible(true);
+        }else{
+          JOptionPane.showMessageDialog
+        (rootPane, "Cpf e/ou Data de nascimento incorreto","Dados incorretos",JOptionPane.ERROR_MESSAGE);
             txtCpf.setText("");
             txtDn.setText("");
             txtCpf.requestFocusInWindow();
             return;
         }
-        frmPrincipal mPrincipal = new frmPrincipal();
-        this.setVisible(false);
-        mPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mPrincipal.setLocationRelativeTo(null);
-        mPrincipal.setVisible(true);
     }//GEN-LAST:event_btnEntrarActionPerformed
-
+          
+    
     private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_txtCpfActionPerformed
+
+    private void txtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            txtDn.requestFocus();
+        }
+    }//GEN-LAST:event_txtCpfKeyPressed
+
+    private void txtDnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDnKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             btnEntrarActionPerformed(null);
+        }
+    }//GEN-LAST:event_txtDnKeyPressed
+
+    private void txtDnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDnActionPerformed
+
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+        
+    }//GEN-LAST:event_btnEntrarKeyPressed
 
     /**
      * @param args the command line arguments
