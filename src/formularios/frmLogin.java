@@ -180,12 +180,14 @@ public void setDados(Dados msDados){
                 new String(txtDn.getText()))){
         frmPrincipal mPrincipal = new frmPrincipal();
         this.setVisible(false);
+        mPrincipal.setDados(msDados);
         mPrincipal.setLocationRelativeTo(null);
         mPrincipal.setVisible(true);
         }else if(msDados.validarUsuario1(txtCpf.getText(),
                 new String(txtDn.getText()))){
             frmPrincipalAdm mPrincipalAdm = new frmPrincipalAdm();
         this.setVisible(false);
+        mPrincipalAdm.setDados(msDados);
         mPrincipalAdm.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mPrincipalAdm.setLocationRelativeTo(null);
         mPrincipalAdm.setVisible(true);

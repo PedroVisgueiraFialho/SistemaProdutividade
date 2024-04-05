@@ -4,6 +4,7 @@
  */
 package formularios;
 
+import classes.Dados;
 import classes.LimitaCaracteres;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -13,10 +14,12 @@ import javax.swing.JOptionPane;
  * @author rafae
  */
 public class frmPrincipal extends javax.swing.JFrame {
+private Dados msDados;
+private int usuAtual = 0;
 
-    /**
-     * Creates new form frmPrincipal
-     */
+public void setDados(Dados msDados){
+    this.msDados = msDados;
+}
     public frmPrincipal() {
         initComponents();
         txtOs.setDocument(new LimitaCaracteres(6, LimitaCaracteres.tipoEntrada.ORDEMSERVICO));
@@ -58,11 +61,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tempo de mão de obra");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         txtNomeCompleto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtNomeCompleto.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtNomeCompleto.setEnabled(false);
         txtNomeCompleto.setFocusable(false);
         txtNomeCompleto.setRequestFocusEnabled(false);
+        txtNomeCompleto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeCompletoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Ordem de serviço:");
@@ -108,6 +122,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnPausar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPausar.setText("Pausar");
 
+        txtDn.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         txtDn.setEnabled(false);
         txtDn.setFocusable(false);
         txtDn.setRequestFocusEnabled(false);
@@ -239,7 +254,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbSetorActionPerformed
 
     private void txtDnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDnActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDnActionPerformed
 
     private void txtOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOsActionPerformed
@@ -269,6 +284,15 @@ public class frmPrincipal extends javax.swing.JFrame {
             btnTerminarActionPerformed(null);
         }
     }//GEN-LAST:event_btnTerminarKeyPressed
+
+    private void txtNomeCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeCompletoActionPerformed
+        
+    }//GEN-LAST:event_txtNomeCompletoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txtNomeCompleto.setText(msDados.getUsuarios()[usuAtual].getNome());
+        txtDn.setText(msDados.getUsuarios()[usuAtual].getDn());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

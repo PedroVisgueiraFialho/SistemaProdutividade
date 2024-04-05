@@ -1,17 +1,21 @@
 package classes;
 
 import classes.Usuario;
+import java.util.Arrays;
 
 public class Dados {
     private Usuario msUsuarios[]= new Usuario[50];
     private int conUsu = 0;
     
     public Dados (){
-        Usuario mUsuario = new Usuario("Paulo","Silva","010101","09876543210","1");
+        Usuario mUsuario = new Usuario("Paulo Silva","010101","09876543210","1");
                 msUsuarios[conUsu]=mUsuario;
                 conUsu++;
     }
-        
+    
+    public Usuario[]getUsuarios(){
+        return msUsuarios;
+    }    
             
     public boolean validarUsuario (String Cpf, String Dn){
         boolean aux = false;

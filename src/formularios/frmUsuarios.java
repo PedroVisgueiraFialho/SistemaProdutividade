@@ -4,15 +4,19 @@
  */
 package formularios;
 
+import classes.Dados;
+
 /**
  *
  * @author rafae
  */
 public class frmUsuarios extends javax.swing.JInternalFrame {
+private Dados msDados;
+private int usuAtual = 0;
 
-    /**
-     * Creates new form frmUsuario
-     */
+public void setDados(Dados msDados){
+    this.msDados = msDados;
+}
     public frmUsuarios() {
         initComponents();
     }
@@ -31,6 +35,23 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Usuarios");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -45,6 +66,10 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+      
+    }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

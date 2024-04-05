@@ -4,6 +4,8 @@
  */
 package formularios;
 
+import classes.Dados;
+
 
 
 /**
@@ -11,10 +13,10 @@ package formularios;
  * @author rafae
  */
 public class frmPrincipalAdm extends javax.swing.JFrame {
-
-    /**
-     * Creates new form frmPrincipalDiretoria
-     */
+private Dados msDados;
+public void setDados(Dados msDados){
+    this.msDados = msDados;
+}
     public frmPrincipalAdm() {
         initComponents();
     }
@@ -120,6 +122,7 @@ public class frmPrincipalAdm extends javax.swing.JFrame {
 
     private void mnuPessoalUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPessoalUsuariosActionPerformed
 frmUsuarios mUsuarios = new frmUsuarios();
+mUsuarios.setDados(msDados);
 dpnDesk.add(mUsuarios);
 mUsuarios.show();
     }//GEN-LAST:event_mnuPessoalUsuariosActionPerformed
@@ -133,6 +136,7 @@ mUsuarios.show();
 
     private void mnuPessoalNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPessoalNovoUsuarioActionPerformed
 frmNovoUsuario mNovoUsuario = new frmNovoUsuario();
+mNovoUsuario.setDados(msDados);
 dpnDesk.add(mNovoUsuario);
 mNovoUsuario.show();        
     }//GEN-LAST:event_mnuPessoalNovoUsuarioActionPerformed

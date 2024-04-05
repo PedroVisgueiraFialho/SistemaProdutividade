@@ -4,6 +4,7 @@
  */
 package formularios;
 
+import classes.Dados;
 import classes.LimitaCaracteres;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -13,10 +14,10 @@ import javax.swing.JOptionPane;
  * @author rafae
  */
 public class frmNovoUsuario extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form frmNovoUsuario
-     */
+private Dados msDados;
+public void setDados(Dados msDados){
+    this.msDados = msDados;
+}
     public frmNovoUsuario() {
         initComponents();
         txtNome.setDocument(new LimitaCaracteres(60, LimitaCaracteres.tipoEntrada.NOME));
@@ -50,7 +51,7 @@ public class frmNovoUsuario extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Novo Usuario");
         setMinimumSize(new java.awt.Dimension(36, 36));
-        setPreferredSize(new java.awt.Dimension(400, 237));
+        setPreferredSize(new java.awt.Dimension(350, 237));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Nome:");
@@ -93,6 +94,11 @@ public class frmNovoUsuario extends javax.swing.JInternalFrame {
 
         cmbPerfil.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cmbPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario", "Administrador" }));
+        cmbPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPerfilActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Selecione um perfil:");
@@ -111,9 +117,6 @@ public class frmNovoUsuario extends javax.swing.JInternalFrame {
                         .addGap(148, 148, 148))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(144, 144, 144)
-                                .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -126,7 +129,9 @@ public class frmNovoUsuario extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbPerfil, 0, 1, Short.MAX_VALUE))
                                 .addGap(55, 55, 55)))
                         .addGap(134, 134, 134)
                         .addComponent(jLabel4)
@@ -152,9 +157,9 @@ public class frmNovoUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(btnSalvar)
-                .addGap(30, 30, 30))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -164,12 +169,15 @@ public class frmNovoUsuario extends javax.swing.JInternalFrame {
         String nome = txtNome.getText();
         String dn = txtDn.getText();
         String cpf = txtCpf.getText();
+        Object selectedItem = cmbPerfil.getSelectedItem();
+        String perfil = (selectedItem != null) ? selectedItem.toString() : null;
         if(nome.equals("")&&dn.equals("")&&cpf.equals("")){
             JOptionPane.showMessageDialog(null, "Você não pode deixar os campos em branco");
             return;
         }else{
         int option = JOptionPane.showConfirmDialog
-        (null, "Confira os dados\n Nome: "+nome+"\nData de nascimento: "+dn+"\nCPF: "+cpf,"Confira os dados"
+        (null, "Confira os dados\n Nome: "+nome+"\nData de nascimento: "+dn+""
+                + "\nCPF: "+cpf+"\nPefil: "+perfil,"Confira os dados"
                 ,JOptionPane.INFORMATION_MESSAGE);
         if (option == JOptionPane.YES_OPTION) {
         this.setVisible(false);
@@ -200,6 +208,10 @@ public class frmNovoUsuario extends javax.swing.JInternalFrame {
             btnSalvarActionPerformed(null);
         }
     }//GEN-LAST:event_txtCpfKeyPressed
+
+    private void cmbPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPerfilActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
