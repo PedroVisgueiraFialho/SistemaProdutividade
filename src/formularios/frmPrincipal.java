@@ -226,7 +226,7 @@ public void setDados(Dados msDados){
         String setor = (selectedItem != null) ? selectedItem.toString() : null;
         String os = txtOs.getText();
         int option = JOptionPane.showConfirmDialog
-        (null, "Confira seus dados\n Setor: "+setor+"\nOrdem de serviço: "+os,"Atenção"
+        (rootPane, "Confira seus dados\n Setor: "+setor+"\nOrdem de serviço: "+os,"Atenção"
                 ,JOptionPane.WARNING_MESSAGE);
         if (option == JOptionPane.YES_OPTION) {
         frmLogin mLogin = new frmLogin();

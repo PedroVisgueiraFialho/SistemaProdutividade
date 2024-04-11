@@ -5,6 +5,7 @@
 package formularios;
 
 import classes.Dados;
+import javax.swing.JFrame;
 
 
 
@@ -122,9 +123,11 @@ public void setDados(Dados msDados){
 
     private void mnuPessoalUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPessoalUsuariosActionPerformed
 frmUsuarios mUsuarios = new frmUsuarios();
+this.setVisible(false);
 mUsuarios.setDados(msDados);
-dpnDesk.add(mUsuarios);
-mUsuarios.show();
+        mUsuarios.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mUsuarios.setLocationRelativeTo(null);
+        mUsuarios.setVisible(true);
     }//GEN-LAST:event_mnuPessoalUsuariosActionPerformed
 
     private void mnuPessoalSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPessoalSairActionPerformed

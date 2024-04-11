@@ -4,11 +4,12 @@ import classes.Usuario;
 import java.util.Arrays;
 
 public class Dados {
-    private Usuario msUsuarios[]= new Usuario[50];
+    private int maxUsu = 50;
+    private Usuario msUsuarios[]= new Usuario[maxUsu];
     private int conUsu = 0;
     
     public Dados (){
-        Usuario mUsuario = new Usuario("Paulo Silva","010101","09876543210","1");
+        Usuario mUsuario = new Usuario("Paulo Silva","010101","09876543210",1);
                 msUsuarios[conUsu]=mUsuario;
                 conUsu++;
     }
@@ -33,5 +34,24 @@ public class Dados {
             return false;
         }
     }   
+    
+    public int posicaoUsuario (String Cpf){
+      
+        for(int i = 0; i < conUsu; i++){
+        if(msUsuarios[i].getCpf().equals(Cpf)){
+            return i;
+        }
+        }
+        return -1;
+    }
+    
+    public String adicionarUsuario(Usuario msUsuario){
+        if(conUsu == maxUsu){
+            return"NÃO É POSSIVEL CADASTRAR MAIS USUÁRIOS";
+        }
+        msUsuarios[conUsu]=msUsuario;
+        conUsu++;
+        return"USUÁRIO CADASTRADO COM SUCESSO";
+    }
 }
 

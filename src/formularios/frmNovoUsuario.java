@@ -6,6 +6,7 @@ package formularios;
 
 import classes.Dados;
 import classes.LimitaCaracteres;
+import classes.Usuario;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
@@ -171,8 +172,13 @@ public void setDados(Dados msDados){
         String cpf = txtCpf.getText();
         Object selectedItem = cmbPerfil.getSelectedItem();
         String perfil = (selectedItem != null) ? selectedItem.toString() : null;
-        if(nome.equals("")&&dn.equals("")&&cpf.equals("")){
-            JOptionPane.showMessageDialog(null, "Você não pode deixar os campos em branco");
+        int pos = msDados.posicaoUsuario(txtCpf.getText());
+        if(nome.equals("")||dn.equals("")||cpf.equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Você não pode deixar os campos em branco");
+            return;
+        }else if(pos != -1){
+            JOptionPane.showMessageDialog(rootPane, "ESTE CPF JA ESTÁ CADASTRADO");
+            txtCpf.requestFocusInWindow();
             return;
         }else{
         int option = JOptionPane.showConfirmDialog
@@ -185,6 +191,14 @@ public void setDados(Dados msDados){
          return;
        }
       }
+        
+        Usuario msUsuario = new Usuario(
+                txtNome.getText(),
+                txtDn.getText(),
+                txtCpf.getText(),
+                cmbPerfil.getSelectedIndex());
+        String msg = msDados.adicionarUsuario(msUsuario);
+        JOptionPane.showMessageDialog(rootPane, msg);
     }
     
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed

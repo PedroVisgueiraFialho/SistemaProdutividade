@@ -5,9 +5,9 @@ public class Usuario {
     private String nome;
     private String dn;
     private String cpf;
-    private String perfil;
+    private int perfil;
 
-    public Usuario(String nome, String dn, String cpf, String perfil) {
+    public Usuario(String nome, String dn, String cpf, int perfil) {
         this.nome = nome;
         this.dn = dn;
         this.cpf = cpf;
@@ -37,6 +37,16 @@ public class Usuario {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public int getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(int perfil) {
+        this.perfil = perfil;
+    }
+
     
+
     
 }
