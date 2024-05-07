@@ -6,12 +6,14 @@ public class Usuario {
     private String dn;
     private String cpf;
     private int perfil;
+    private String id;
 
-    public Usuario(String nome, String dn, String cpf, int perfil) {
+    public Usuario(String nome, String dn, String cpf, int perfil, String id) {
         this.nome = nome;
         this.dn = dn;
         this.cpf = cpf;
         this.perfil = perfil;
+        this.id = id;
     }
 
     public String getNome() {
@@ -46,7 +48,13 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    
+    public String getId() {
+        return id;
+    }
 
-    
+    public void setId(String id) {
+        this.id = id;
+    }
 }
+    
+    

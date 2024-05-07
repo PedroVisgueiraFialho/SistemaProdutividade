@@ -9,7 +9,7 @@ public class Dados {
     private int conUsu = 0;
     
     public Dados (){
-        Usuario mUsuario = new Usuario("Paulo Silva","010101","09876543210",1);
+        Usuario mUsuario = new Usuario("Paulo Silva","010101","09876543210",1,"1");
                 msUsuarios[conUsu]=mUsuario;
                 conUsu++;
     }
@@ -18,17 +18,17 @@ public class Dados {
         return msUsuarios;
     }    
             
-    public boolean validarUsuario (String Cpf, String Dn){
+    public boolean validarUsuario (String Id){
         boolean aux = false;
         for(int i = 0; i < conUsu; i++){
-        if(msUsuarios[i].getCpf().equals(Cpf)&& msUsuarios[i].getDn().equals(Dn)){
+        if(msUsuarios[i].getId().equals(Id)){
             return true;
         }
         }
         return false;
     }
-    public boolean validarUsuario1 (String Cpf, String Dn){
-        if(Cpf.equals("12345678901")&& Dn.equals("010203")){
+    public boolean validarUsuario1 (String Id){
+        if(Id.equals("2")){
             return true;
         }else{
             return false;

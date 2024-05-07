@@ -1,7 +1,8 @@
-
+    
 package classes;
 
 import formularios.frmLogin;
+import javax.swing.JFrame;
 
 public class JavaSistema {
 
@@ -11,7 +12,6 @@ public class JavaSistema {
      miLogin.setDados(msDados);
      miLogin.setLocationRelativeTo(null);
      miLogin.setVisible(true);
-    
     }
     
 }

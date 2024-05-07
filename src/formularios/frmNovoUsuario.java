@@ -24,6 +24,7 @@ public void setDados(Dados msDados){
         txtNome.setDocument(new LimitaCaracteres(60, LimitaCaracteres.tipoEntrada.NOME));
         txtDn.setDocument(new LimitaCaracteres(6, LimitaCaracteres.tipoEntrada.DATA));
         txtCpf.setDocument(new LimitaCaracteres(11, LimitaCaracteres.tipoEntrada.CPF));
+        txtId.setDocument(new LimitaCaracteres(2, LimitaCaracteres.tipoEntrada.NUMEROINTEIRO));
     }
 
     /**
@@ -45,6 +46,8 @@ public void setDados(Dados msDados){
         jLabel4 = new javax.swing.JLabel();
         cmbPerfil = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -100,9 +103,24 @@ public void setDados(Dados msDados){
                 cmbPerfilActionPerformed(evt);
             }
         });
+        cmbPerfil.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbPerfilKeyPressed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Selecione um perfil:");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("Selecione o id:");
+
+        txtId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,7 +133,7 @@ public void setDados(Dados msDados){
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(148, 148, 148))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -126,17 +144,22 @@ public void setDados(Dados msDados){
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbPerfil, 0, 1, Short.MAX_VALUE))
-                                .addGap(55, 55, 55)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(134, 134, 134)
                         .addComponent(jLabel4)
-                        .addGap(162, 162, 162))))
+                        .addGap(162, 162, 162))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbPerfil, 0, 1, Short.MAX_VALUE))
+                        .addGap(351, 351, 351))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,13 +177,17 @@ public void setDados(Dados msDados){
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalvar)
-                .addGap(28, 28, 28))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,9 +198,10 @@ public void setDados(Dados msDados){
         String dn = txtDn.getText();
         String cpf = txtCpf.getText();
         Object selectedItem = cmbPerfil.getSelectedItem();
+        String id = txtId.getText();
         String perfil = (selectedItem != null) ? selectedItem.toString() : null;
         int pos = msDados.posicaoUsuario(txtCpf.getText());
-        if(nome.equals("")||dn.equals("")||cpf.equals("")){
+        if(nome.equals("")||dn.equals("")||cpf.equals("")||id.equals("")){
             JOptionPane.showMessageDialog(rootPane, "Você não pode deixar os campos em branco");
             return;
         }else if(pos != -1){
@@ -183,7 +211,7 @@ public void setDados(Dados msDados){
         }else{
         int option = JOptionPane.showConfirmDialog
         (null, "Confira os dados\n Nome: "+nome+"\nData de nascimento: "+dn+""
-                + "\nCPF: "+cpf+"\nPefil: "+perfil,"Confira os dados"
+                + "\nCPF: "+cpf+"\nPefil: "+perfil+"\nId:"+id,"Confira os dados"
                 ,JOptionPane.INFORMATION_MESSAGE);
         if (option == JOptionPane.YES_OPTION) {
         this.setVisible(false);
@@ -196,7 +224,8 @@ public void setDados(Dados msDados){
                 txtNome.getText(),
                 txtDn.getText(),
                 txtCpf.getText(),
-                cmbPerfil.getSelectedIndex());
+                cmbPerfil.getSelectedIndex(),
+                txtId.getText());
         String msg = msDados.adicionarUsuario(msUsuario);
         JOptionPane.showMessageDialog(rootPane, msg);
     }
@@ -219,13 +248,25 @@ public void setDados(Dados msDados){
 
     private void txtCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            btnSalvarActionPerformed(null);
+            txtId.requestFocus();
         }
     }//GEN-LAST:event_txtCpfKeyPressed
 
     private void cmbPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPerfilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbPerfilActionPerformed
+
+    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+      if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            cmbPerfil.requestFocus();
+        }
+    }//GEN-LAST:event_txtIdKeyPressed
+
+    private void cmbPerfilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbPerfilKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+         btnSalvar.doClick();   
+        }
+    }//GEN-LAST:event_cmbPerfilKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -236,8 +277,10 @@ public void setDados(Dados msDados){
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtDn;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
